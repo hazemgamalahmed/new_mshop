@@ -1,29 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\OrderRequest;
+use App\Order;
 use App\Product;
-use Rap2hpoutre\FastExcel\FastExcel;
-use App\Repository\Product\productRepositoryInterface;
-
+use App\Client;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $productRepository;
-    public function __construct(productRepositoryInterface $productRepository)
+    public function index()
     {
-        $this->productRepository = $productRepository;
-    }
-    public function index(Request $request)
-    {
-        return view('admin.product.index', [
-            'products' => $this->productRepository->caption()
+        return view('admin.order.index', [
+            'orders' => Order::orderBy('id', 'desc')->paginate()
         ]);
     }
 
@@ -34,7 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.order.create', [
+            'products' => Product::all(),
+            'clients' => Client::all()
+        ]);
     }
 
     /**
@@ -43,29 +40,36 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        $request->merge([
+            'user_id' => auth()->user()->id
+        ]);
+        // dd($request->all());
+        $order = Order::create($request->all());
+        $order->products()->attach($request->get('products'));
+        $order->save();
+        dd($order);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Order $order)
     {
-          $this->productRepository->showUs($product);   
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Order $order)
     {
         //
     }
@@ -74,10 +78,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -85,12 +89,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Order $order)
     {
-        $this->productRepository->delete($product);
-        return redirect()->route('admin.products.index');
+        //
     }
 }

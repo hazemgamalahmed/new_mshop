@@ -35,6 +35,8 @@
                               </div>
                               </form>
                             </div>
+
+                            
                             <div class="col">
                             <form class="form-group">
                             <input type="text" name="search" class="form-control" placeholder="search"/>
@@ -44,6 +46,7 @@
                             </div>
                             <div class="col">
                             <a class="btn btn-success" href="{{route('admin.categories.create')}}"><i class="fa fa-plus"></i> Add Category</a>
+                            <a class="btn btn-primary" href="{{route('admin.categories.export')}}"><i class="fa fa-file"></i> Export</a>
                             </div>
                         </div>
                         <table class="table table-bordered">

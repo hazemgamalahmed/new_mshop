@@ -17,6 +17,7 @@
                     <input class="form-control" type="text" name = "name" value = "{{isset($category->name) ? $category->name : ''}}"/>
                     <span class="text-danger">
                     {{$errors->first('name')}}
+                    
                     <br>
                     </span>
                     <label>the level of the category</label>

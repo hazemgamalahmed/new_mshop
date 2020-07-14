@@ -63,6 +63,24 @@
               </p>
             </a>
           </li>
+          
+          <li class="nav-item">
+            <a href="{{route('admin.clients.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Clients
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="{{route('admin.orders.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                orders
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

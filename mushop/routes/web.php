@@ -23,7 +23,11 @@ Route::group([
     'middleware' => 'auth'
 ], function(){
     Route::get('/', 'DashboardController')->name('dashboard');
+    Route::get('/categories/export', 'CategoryController@export')->name('categories.export');
     Route::resource('/categories', 'CategoryController');
+    Route::resource('/clients', 'ClientController');
+    Route::resource('/orders', 'OrderController');
+    
     Route::resource('/products', 'ProductController');
 });
 Auth::routes();

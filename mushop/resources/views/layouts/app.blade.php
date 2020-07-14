@@ -13,3 +13,6 @@
   @include('layouts.parts.footer')
 
   @include('layouts.parts.js')
+  @yield('js');
+  </body>
+</html>

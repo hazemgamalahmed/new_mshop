@@ -24,7 +24,7 @@ class categoryRepository implements categoryRepositoryInterface
     }
     public function all(Category $model)
     {
-        return $model::all();
+        return $model::all(); 
     }
     public function edit(Request $request, Category $model)
     {

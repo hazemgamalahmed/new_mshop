@@ -22,11 +22,12 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->unsignedFloat('price');
             $table->unsignedInteger('quantity');
-            
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('category_id')
             ->on('categories')
             ->references('id')
+            
             ->cascadeOnDelete();
             $table->foreign('user_id')
             ->on('users')

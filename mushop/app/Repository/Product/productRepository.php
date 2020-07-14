@@ -20,7 +20,13 @@ class productRepository implements productRepositoryInterface
     public function showUs(Product $model)
     {
         return view('admin.product.show', [
-            'product' => $model
+            'product' => $model 
+
         ]);
+    }
+    public function delete(Product $model)
+    {
+        return $model->delete();
+        
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Rap2hpoutre\FastExcel\FastExcel;
 use App\Http\Requests\CategoryRequest;
 use App\Repository\Category\categoryRepositoryInterface;
 use Illuminate\Http\Request;
@@ -90,7 +91,7 @@ class CategoryController extends Controller
         return $this->categoryRepository->showus($category);
         
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -102,5 +103,9 @@ class CategoryController extends Controller
         // $category->delete();
         $this->categoryRepository->delete($category);
         return redirect(route('admin.categories.index'));
+    }
+    public function export(Category $category)
+    {
+        return (new FastExcel($this->categoryRepository->all($category)))->download('category-'.time().'.xlsx');
     }
 }

@@ -52,7 +52,11 @@
                  <td>
                  <a href="{{route('admin.products.show', $product)}}" class="btn btn-info">Show</a>
                  <a href="" class="btn btn-primary">Edit</a>
-                 <a href="" class="btn btn-danger">Delete</a>
+                 <form method="POST" action="{{route('admin.products.destroy', $product)}}" style="display:inline-block;">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="btn btn-danger">Delete</button>
+                 </form>
                  </td>
                  </tr>
                  @endforeach

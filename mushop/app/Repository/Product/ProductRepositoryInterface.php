@@ -7,4 +7,5 @@ interface productRepositoryInterface
 {
     public function caption();
     public function showUs(Product $product);
+    public function delete(Product $product);
 }
