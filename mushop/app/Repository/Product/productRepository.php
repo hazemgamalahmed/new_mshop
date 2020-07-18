@@ -2,7 +2,6 @@
 namespace App\Repository\Product;
 use App\Product;
 use Illuminate\Http\Request;
-
 class productRepository implements productRepositoryInterface
 {
     protected $model;
@@ -10,12 +9,15 @@ class productRepository implements productRepositoryInterface
     {
         $this->model = $model;
     }
-    public function caption()
+    public function caption(Request $request)
     {
+        $Limits = $request->query('limit', 5);
+        $query_search = $request->query('search');
         return $this->model::orderBy('id','desc')
         ->with(['category'])
         ->with(['users'])
-        ->paginate(5);
+        ->where('name', 'LIKE', "%$query_search%")
+        ->paginate($Limits);
     }
     public function showUs(Product $model)
     {
@@ -23,6 +25,12 @@ class productRepository implements productRepositoryInterface
             'product' => $model 
 
         ]);
+        
+
+    }
+    public function all()
+    {
+        return $this->model::all();
     }
     public function delete(Product $model)
     {

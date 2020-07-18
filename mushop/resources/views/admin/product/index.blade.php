@@ -26,14 +26,30 @@
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
+
                     <div class="card card-body">
                         <div class="row">
+                        <div class = "col">
+                        <form class="form-group">
+                        <input type="number" name="limit" class="form-control" />
+                        <button type="submit" class="btn btn-info text-center">limited data</button>
+                        </form>
+                        </div>
+                        <div class = "col">
+                        <form class="form-group">
+                        <input type="text" class="form-control" name="search"/>
+                        <button type="submit" class="btn btn-info">Search</button>
+                        </form>
+                        </div>
+                        <div class = "col">
+                        <a href="{{route('admin.products.create')}}" class="btn btn-success"> <i class="fa fa-plus"></i> add product</a>
+                        </div>
                  </div>
                  <table class="table-bordered">
                  <thead>
                  <tr>
                  <th>#</th>
-                 <th>product name</th>
+                 <th>product welcome</th>
                  <th>product Category</th>
                  <th>product Price</th>
                  <th>Added By</th>

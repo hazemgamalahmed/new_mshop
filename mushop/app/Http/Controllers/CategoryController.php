@@ -8,6 +8,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Repository\Category\categoryRepositoryInterface;
 use Illuminate\Http\Request;
 
+
 class CategoryController extends Controller
 {
     /**
@@ -62,6 +63,7 @@ class CategoryController extends Controller
     {
         return $this->categoryRepository->showus($category);
     }
+    
 
     /**
      * Show the form for editing the specified resource.

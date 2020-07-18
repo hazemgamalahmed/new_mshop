@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Rap2hpoutre\FastExcel\FastExcel;
+use App\Http\Requests\ProductRequest;
 use App\Repository\Product\productRepositoryInterface;
 
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         return view('admin.product.index', [
-            'products' => $this->productRepository->caption()
+            'products' => $this->productRepository->caption($request)
         ]);
     }
 
@@ -34,7 +35,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.product.create', [
+            'products' => $this->productRepository->all()
+        ]);
+
     }
 
     /**
@@ -56,7 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-          $this->productRepository->showUs($product);   
+        return  $this->productRepository->showUs($product); 
     }
 
     /**
